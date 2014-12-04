@@ -8,7 +8,9 @@ js跑马灯 轮播抽奖效果
 <p>模块化</p>
 <p>还不太完善,有时间慢慢改善</p>
 <pre>
-mainLottery.js
+
+<h3>mainLottery.js</h3>
+
  require.config({
      baseUrl: "js",
      paths: {
@@ -24,7 +26,6 @@ mainLottery.js
      "lottery",
      "data"
  ], function($, lottery, data){
-
      //抽奖配置参数
      var obj = {
          endPoint: 3, //终结点，就所中的奖品号
@@ -32,23 +33,15 @@ mainLottery.js
  //        data: data //数据
  //        url: "./par.php" //是否后台验证
      };
-
      lottery(obj);
-
  });
 
-
-
 <h3>lottery.js</h3>
-
  define([
- //    "./lib/jquery"
      "jquery",
      "data",
      "dialog"
  ], function($, data, dialog){
- //    var $$ = window.Roulette = function(obj){
-
      /**
       * @function Roulette
       * params {object} {}对象字面量
@@ -60,10 +53,42 @@ mainLottery.js
 
      Roulette.fn = Roulette.prototype = { .... }
 
-
      Roulette.fn.init.prototype = Roulette.fn;
 
      return Roulette;
  })
 
+
+<h3>data.js</h3>
+define(function(){
+    var obj = {
+        wrapBg: "#e4015f", //#e4015f #ff2f78 #000
+        ruleBg: "#ff2f78",
+        startBg: "images/lottery_start.jpg", //开始按钮图片
+        linkColor: "#000"//链接颜色
+
+    };
+    //抽奖规则
+    obj.ruleData = "<p>1、实付金额消费满80元，获得1次机会<\/p>"
+                    + "<p>2、给予全五分好评获得1次机会<\/p>"
+                    + "<p>3、收藏店铺可获得1次抽奖机会<\/p>"
+                    + "<p>4、分享引来1个流量获得1次抽奖机会<\/p>"
+                    + "<p> 8、所有进店者可免费获得1次抽奖机会<\/p>";
+
+    //奖品
+    obj.prize = [
+        { "src": "images/lottery_01.jpg", "alt": "全棉时代全棉柔斤一盒"},
+        { "src": "images/lottery_02.jpg", "alt": "全棉时代全棉柔斤一盒"},
+        { "src": "images/lottery_03.jpg", "alt": "全棉时代全棉柔斤一盒"},
+        { "src": "images/lottery_04.jpg", "alt": "全棉时代全棉柔斤一盒"},
+        { "src": "images/lottery_05.jpg", "alt": "全棉时代全棉柔斤一盒"},
+
+        { "src": "images/lottery_06.jpg", "alt": "全棉时代全棉柔斤一盒"},
+        { "src": "images/lottery_07.jpg", "alt": "全棉时代全棉柔斤一盒"},
+        { "src": "images/lottery_08.jpg", "alt": "全棉时代全棉柔斤一盒"},
+        { "src": "images/lottery_09.jpg", "alt": "全棉时代全棉柔斤一盒"},
+        { "src": "images/lottery_10.jpg", "alt": "全棉时代全棉柔斤一盒"}
+    ];
+    return obj;
+});
 </pre>
