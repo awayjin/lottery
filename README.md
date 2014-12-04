@@ -73,17 +73,17 @@ define(function(){
 
     //奖品
     obj.prize = [
-        { "src": "images/lottery_01.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_02.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_03.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_04.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_05.jpg", "alt": "全棉时代全棉柔斤一盒"},
+        { "src": "images/lottery_01.jpg", "alt": "一盒"},
+        { "src": "images/lottery_02.jpg", "alt": "2盒"},
+        { "src": "images/lottery_03.jpg", "alt": "一盒"},
+        { "src": "images/lottery_04.jpg", "alt": "一盒"},
+        { "src": "images/lottery_05.jpg", "alt": "一盒"},
 
-        { "src": "images/lottery_06.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_07.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_08.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_09.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_10.jpg", "alt": "全棉时代全棉柔斤一盒"}
+        { "src": "images/lottery_06.jpg", "alt": "3盒"},
+        { "src": "images/lottery_07.jpg", "alt": "一盒"},
+        { "src": "images/lottery_08.jpg", "alt": "一盒"},
+        { "src": "images/lottery_09.jpg", "alt": "一盒"},
+        { "src": "images/lottery_10.jpg", "alt": "一盒"}
     ];
     return obj;
 });
