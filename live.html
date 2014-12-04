@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+    <title>jquery live()函数原理及实现</title>
+    <style type="text/css">
+        table{
+            border-collapse:collapse;
+            border-spacing:0;
+        }
+        td{
+            border:1px solid #cdcdcd;
+        }
+    </style>
+    <script type="text/javascript">
+        function live(target, type, fn){    //元素类型，事件类型，执行函数
+            document.onclick = function(event){
+                var e = event ? event : window.event;
+                addRow();
+                if(e.type == type && e.target.tagName.toLocaleLowerCase() == target){
+                    fn();    //如果元素类型和事件类型同时匹配,则执行函数
+                }
+            }
+        }
+        function addRow(){
+            var x=document.getElementById("tb").insertRow(0);
+            var y=x.insertCell(0);
+            var z=x.insertCell(1);
+            y.innerHTML="NEW CELL1";
+            z.innerHTML="NEW CELL2";
+        }
+
+        //实例:将所有的td(包括后续js添加的)绑定click事件
+        live("table", "click", function(){
+            alert("live");
+        });
+    </script>
+</head>
+<body>
+<table id="tb">
+    <tr>
+        <td>..........................................</td>
+        <td>..........................................</td>
+    </tr>
+    <tr>
+        <td>..........................................</td>
+        <td>..........................................</td>
+    </tr>
+    <tr>
+        <td>..........................................</td>
+        <td>..........................................</td>
+    </tr>
+</table>
+
+
+<ul>
+    <li><span>jinwei</span></li>
+</ul>
+<script type="text/javascript">
+
+
+    //on
+    var likeOn = function(ele, type, fn){
+        var doc = document,
+                target,
+                element,
+                bindEle;
+
+        doc.onclick = function(e){
+            e = e || window.event;
+            element = e.target.tagName.toLocaleLowerCase()
+            if(e.type == type && element == ele){
+                fn(e);
+            }
+        };
+    }
+
+    likeOn("span", "click", function(thy){
+        console.log("1.0:"+thy)
+    });
+
+    //没有冒泡
+    var span = document.getElementsByTagName("span")[0];
+    span.addEventListener("click", function(){
+        console.log("2.0:ca");
+    });
+
+
+
+    $("ul > li").append("   <span>123</span>");
+</script>
+</body>
+</html>

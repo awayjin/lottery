@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./js/jquery-1.11.0.min.js"></script>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <style type="text/css">
+        .lottery-draw{ width: 990px; height: 370px; margin: 20px auto; background-color: #e4015f;}
+        .lottery-draw-left, .lottery-draw-txt{ float: left;}
+        .lottery-draw-left{ width: 640px;}
+        .lottery-draw-txt{ width: 290px; margin: 20px 0 0;}
+
+        .lottery-draw-area{ position: relative; margin: 20px 0 0 30px;}
+        .lottery-draw-img{ position: absolute; width: 145px; height: 108px;}
+        .lottery-draw-prize1{left: 0px; top: 0px;}
+        .lottery-draw-prize2{left: 146px; top: 0px;}
+        .lottery-draw-prize3{left: 292px; top: 0px;}
+        .lottery-draw-prize4{left: 438px; top: 0px;}
+
+        .lottery-draw-prize5{left: 0px; top: 109px;}
+        .lottery-draw-prize6{left: 146px; top: 109px; width: 291px;}
+        .lottery-draw-prize7{left: 438px; top: 109px;}
+
+        .lottery-draw-prize8{left: 0px; top: 218px;}
+        .lottery-draw-prize9{left: 146px; top: 218px;}
+        .lottery-draw-prize10{left: 292px; top: 218px;}
+        .lottery-draw-prize11{left: 438px; top: 218px;}
+
+        .lot-draw-intro{ background-color: #ff2f78; width: 320px; height: 250px;}
+        .lot-draw-share{ text-align: right;}
+
+        .draw-detail{ margin: 8px 0 12px;}
+        .draw-detail a{ color: #000; font-size: 12px;}
+
+        .lot-draw-intro{ color: #000; font-family: "microsoft yahei";}
+        .draw-intro h3{ font-size: 18px; margin: 0 0 10px;}
+        .draw-intro{ padding: 20px 0 0 30px; font-size: 12px; line-height: 20px;}
+        .lottery-prize-active{position: absolute; width: 145px; height: 108px;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            opacity: .65;
+            filter: alpha(opacity=65);}
+    </style>
+</head>
+<body>
+
+<div class="lottery-draw">
+
+   <div class="lottery-draw-left">
+       <div class="lottery-draw-area">
+           <div class="lottery-draw-img lottery-draw-prize1">
+               <img src="images/lottery_01.jpg">
+               <div class="lottery-prize-active"></div>
+           </div>
+           <div class="lottery-draw-img lottery-draw-prize2">
+               <img src="images/lottery_02.jpg">
+           </div>
+           <div class="lottery-draw-img lottery-draw-prize3">
+               <img src="images/lottery_03.jpg">
+           </div>
+           <div class="lottery-draw-img lottery-draw-prize4">
+               <img src="images/lottery_04.jpg">
+           </div>
+
+           <div class="lottery-draw-img lottery-draw-prize5">
+               <img src="images/lottery_05.jpg">
+           </div>
+           <div class="lottery-draw-img lottery-draw-prize6">
+               <img src="images/lottery_06.jpg">
+           </div>
+           <div class="lottery-draw-img lottery-draw-prize7">
+               <img src="images/lottery_07.jpg">
+           </div>
+
+           <div class="lottery-draw-img lottery-draw-prize8">
+               <img src="images/lottery_08.jpg">
+           </div>
+           <div class="lottery-draw-img lottery-draw-prize9">
+               <img src="images/lottery_09.jpg">
+           </div>
+           <div class="lottery-draw-img lottery-draw-prize10">
+               <img src="images/lottery_10.jpg">
+           </div>
+           <div class="lottery-draw-img lottery-draw-prize11">
+               <img src="images/lottery_11.jpg">
+           </div>
+       </div>
+   </div>
+    <div class="lottery-draw-txt">
+           <div class="lot-draw-share">
+               <img src="images/lottery_share.jpg">
+               <img src="images/lottery_collect.jpg">
+               <p class="draw-detail"><a href="#">活动细则</a> | <a href="#">我的奖品</a></p>
+           </div>
+
+            <div class="lot-draw-intro">
+                <div class="draw-intro">
+                    <h3>规则说明</h3>
+                    <p>1、实付金额消费满80元，获得1次机会</p>
+                    <p>2、给予全五分好评获得1次机会</p>
+                    <p>3、收藏店铺可获得1次抽奖机会</p>
+                    <p>4、分享引来1个流量获得1次抽奖机会</p>
+                    <p> 5、所有进店者可免费获得1次抽奖机会</p>
+                </div>
+            </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery.lotteryDraw.js"></script>
+
+<script type="text/javascript">
+    $.LotteryDraw({a: 111})
+</script>
+
+<script type="text/javascript">
+    var mask = '<div class="lottery-prize-active"></div>';
+    var imgMask = ".lottery-draw-img";
+    var active = ".lottery-prize-active";
+
+    var t; ///用它存放setinterval,不用扣得太细，因为只要用到setinterval最后就得用     window.clearInterval(t);去释放他
+    var index = 1;/////这个用来记录当前循环的次数，比如点了抽奖要转四圈，每转一圈有8个奖品，那一共就要循环8*圈数
+    var circles = 1;////抽奖要转的圈数
+    var currentcircles = 1; ///记录当前是第几圈setinterval的第二个参数，通过操纵他来实现变速
+    var speed = 0;/////转动的速度,用它作为
+    var endpoint = 0; /////最后停止的位置，即选中了谁
+    ////抽奖开始
+    function startup() {
+        $(".btnRun").attr("disabled", true);
+        /////随机生成圈数，要跑几圈，不要太少了，太少了看着就不舒服。这里是生成4-14以内的随机整数
+        circles = Math.round(Math.random() * 10 + 5);
+        /////终结点，生成1-10之内的随机数,因为你一圈有10个奖品
+//            endpoint =5;
+        endpoint = Math.round(Math.random() * 10);
+
+        ////当前的圈数
+        currentcircles = 1;
+        ////速度，谁的太高了会很慢
+        speed = 800;
+        ////当前循环的次数
+        index =1;
+        /////取得放奖品的<td>的数组
+        var goods = document.getElementsByName("roundelgoods");
+        ////存放奖品的<td>的数组
+        var drawturn = [];
+
+        ////开始循环
+        t= setInterval(HighTurn,speed);
+    }
+
+    ///循环奖品方法
+    function HighTurn() {
+        if (index > 1) {
+            if ((index % 10) == 1) {
+                $(imgMask).eq(9).find(active).remove();
+            } else {
+                var bb = index - (10*(currentcircles -1)) -1;
+                $(imgMask).eq(bb-1).find(active).remove();
+            }
+        }
+        var aa = index - (10*(currentcircles-1));
+        $(imgMask).eq(aa-1).append(mask);
+
+        if ((index % 10) == 0) {
+            currentcircles++;
+        }
+        index++;
+        if (currentcircles == 1) {
+            window.clearInterval(t);
+            speed -= 80;
+            t = setInterval(HighTurn, speed);
+        }else if (currentcircles == circles ) {
+            window.clearInterval(t);
+            speed += 80;
+            t = setInterval(HighTurn, speed);
+        }
+
+        if (circles == currentcircles && ((index - 1) % 10) == endpoint) {
+            window.clearInterval(t);
+            $(".btnRun").attr("disabled", false);
+            alert("恭喜抽中了" + endpoint + "号奖品");
+            return;
+        }
+
+
+    }
+
+    //        $(".btnRun").click(function(){
+    //            startup();
+    //        });
+
+
+
+
+</script>
+</body>
+</html>
