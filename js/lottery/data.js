@@ -1,9 +1,9 @@
 define(function(){
     var obj = {
-        wrapBg: "#000", //#e4015f #ff2f78
-        ruleBg: "#999",
+        wrapBg: "#e4015f", //#e4015f #ff2f78 #000
+        ruleBg: "#ff2f78",
         startBg: "images/lottery_start.jpg", //开始按钮图片
-        linkColor: "#fff"//链接颜色
+        linkColor: "#000"//链接颜色
 
     };
 
