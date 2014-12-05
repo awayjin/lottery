@@ -1,9 +1,9 @@
 define([
 //    "./lib/jquery"
     "jquery",
-    "data",
+//    "data",
     "dialog"
-], function($, data, dialog){
+], function($, /*data,*/ dialog){
 //    var $$ = window.Roulette = function(obj){
 
     /**
@@ -28,7 +28,6 @@ define([
                 verify: false //后台验证。默认关闭
             };
 
-
             //合并参数
             $.fn.extend(params, obj);
 
@@ -43,17 +42,17 @@ define([
             this.active = ".lottery-prize-active"; //活动层;
             this.ruleWrap = ".lot-draw-intro"; //抽奖规则背景框;
 
-            this.ruleObj = params.ruleObj;
-            this.data = params.data || data;
+//            this.ruleObj = params.ruleObj;
+//            this.data = params.data || data;
 
             this.url = params.url;
             this.verify = params.verify;
 
 
             //数据和抽奖规则初始化
-            this.dom(this.data);
+//            this.dom(this.data);
 
-            this.start();
+//            this.start();
         },
 
         //DOM初始化
@@ -93,6 +92,7 @@ define([
                 imgMask = that.imgMask,
                 active = that.active,
                 start = that.startBtn,
+                verify = that.verify,
 
                 number = parseInt(that.number),
                 url = that.url,
@@ -159,6 +159,7 @@ define([
                 }
 
 
+                console.log(endPoint, that.endPoint)
                 if (circles == currentCircle && ((index - 1) % 10) == that.endPoint) {
                     window.clearInterval(timeId);
                     $(start).attr("disabled", false);
@@ -182,23 +183,17 @@ define([
 
             }
 
-            //点击开始;
-            $(start).on("click", function(){
-                if(number > 0){
-                    startup();
-                    number--
-                }else{
-                    dialog.alert("您的抽奖次数已经用完!");
-                }
-            });
 
+             startup();
 
+        },
+
+        hi: function(){
 
         }
+
     };
     Roulette.fn.init.prototype = Roulette.fn;
 
     return Roulette;
-
-
-})
+});

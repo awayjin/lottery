@@ -17,7 +17,7 @@ define([
                     '</div>' +
                     '<div class="dialog-content" id="d-content">内容</div>' +
                         '<div class="dialog-btn">' +
-                             '<button class="dialog-ok" style="display: none;">确定</button>' +
+                             '<button class="dialog-ok" style="display: ;">继续抽奖</button>' +
                              '<button class="dialog-cancel">取消</button>' +
                      '</div>' +
                 '</div>';
