@@ -3,12 +3,12 @@ js跑马灯 轮播抽奖效果
 </h1>
 <a href="http://www.codegoing.com/lottery/" target="_blank">查看效果地址</a>
 
-<p>用到的库 require.js jquery.js</p>
-<p>可配置，可控制终将的是哪个。数据(抽奖图片),逻辑(js),视图(html)分离.</p>
+<p>用到的库 require.js jquery.js,可配置，可控制终将的是哪个。数据(抽奖图片),逻辑(js),视图(html)分离.</p>
 <p>模块化</p>
 <p>还不太完善,有时间慢慢改善</p>
-<pre>
 
+
+<pre>
 <h3>mainLottery.js</h3>
 
  require.config({

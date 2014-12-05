@@ -124,6 +124,8 @@ define([
                 ////存放奖品的<td>的数组
                 var drawturn = [];
 
+
+
                 ////开始循环
                 timeId= setInterval(autoScroll,speed);
             }
@@ -197,4 +199,6 @@ define([
     Roulette.fn.init.prototype = Roulette.fn;
 
     return Roulette;
+
+
 })
