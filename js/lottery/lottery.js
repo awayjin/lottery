@@ -42,7 +42,7 @@ define([
             this.active = ".lottery-prize-active"; //活动层;
             this.ruleWrap = ".lot-draw-intro"; //抽奖规则背景框;
 
-//            this.ruleObj = params.ruleObj;
+            this.ruleObj = params.ruleObj;
 //            this.data = params.data || data;
 
             this.url = params.url;
@@ -125,7 +125,6 @@ define([
                 var drawturn = [];
 
 
-
                 ////开始循环
                 timeId= setInterval(autoScroll,speed);
             }
@@ -158,8 +157,6 @@ define([
                     timeId = setInterval(autoScroll, speed);
                 }
 
-
-                console.log(endPoint, that.endPoint)
                 if (circles == currentCircle && ((index - 1) % 10) == that.endPoint) {
                     window.clearInterval(timeId);
                     $(start).attr("disabled", false);

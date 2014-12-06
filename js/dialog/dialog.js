@@ -29,7 +29,6 @@ define([
         //作为body后第一个元素插入
         body.insertBefore(wrap, body.firstChild);
 
-
         var i,
             eles,
             elesLen,
@@ -41,9 +40,36 @@ define([
         elesLen = eles.length;
 
         var content = document.getElementById("d-content");
-        content.innerHTML = msg
+
+        for(i=0; i<elesLen; i++){
+            name = eles[i].className.split("-")[1];
+            obj[name] = eles[i];
+        }
 
 
+
+        obj["close"].onclick = function(){
+            //wrap.style.display = "none";
+            $(wrap).remove();
+            $(dMask).remove();
+        }
+
+        obj["cancel"].onclick = function(){
+            //wrap.style.display = "none";
+            $(wrap).remove();
+            $(dMask).remove();
+        }
+
+        //判断是否抽奖资格
+        if(msg instanceof Object){
+            $(".dialog-ok").hide();
+            content.innerHTML = msg.prizeText;
+        }else{
+            content.innerHTML = msg;
+        }
+
+
+        //半透明背景
         var truthEle  = $(wrap).find(".dialog-outer");
         var dMask =".d-mask",
             bodyWidth,
@@ -62,22 +88,6 @@ define([
             left: hCenter
         });
 
-        for(i=0; i<elesLen; i++){
-            name = eles[i].className.split("-")[1];
-            obj[name] = eles[i];
-        }
-
-        obj["close"].onclick = function(){
-            //wrap.style.display = "none";
-            $(wrap).remove();
-            $(dMask).remove();
-        }
-
-        obj["cancel"].onclick = function(){
-            //wrap.style.display = "none";
-            $(wrap).remove();
-            $(dMask).remove();
-        }
 
 
 

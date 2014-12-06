@@ -18,13 +18,9 @@ require([
     //抽奖配置参数
     var obj = {
         endPoint: 3, //终结点，就所中的奖品号
-        number: 2, //抽奖次数
-//        data: data
+        number: 1 //抽奖次数
+//        ,data: data
 //        url: "./par.php"
-        verify: function(){
-            //点击开始;
-
-        }
     };
 
     //初始化数据
@@ -37,22 +33,20 @@ require([
             lottery.start(); //动画开始
             obj.number--
         }else{
-            dialog.alert("您的抽奖次数已经用完!");
+            dialog.alert({
+                number: obj.number,
+                prizeText: "您的抽奖次数已经用完!"
+            });
         }
     });
 
 
-
+     //点击继续抽奖按钮
     $(document).on("click", ".dialog-ok", function(){
         $(".dialog-outer").parent("div").remove();
         $(".d-mask").remove();
         $("#btnrun").click();
     });
-
-
-
-
-
 
 
 });
