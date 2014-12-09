@@ -38,11 +38,16 @@
 .dialog-close:hover, .dialog-cancel:hover, .dialog-btn button:hover{ color: green; border: 1px solid green;}
 
 .d-mask{
-    background-color: #fff; z-index: 3; position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;overflow: hidden;
+   z-index: 3; position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;overflow: hidden;
     display: block;
     opacity: 0.5; filter:alpha(opacity=50);
+    _height: 768px; background-color: #fff;
+    /*background:url("../images/ie6_opacity.png") repeat;*/
 
-    /*_background: url(alpha-bg/alpha-bg-50.png) repeat;*/
+    filter: alpha(opacity=50); moz-opacity: 0.5; opacity: 0.5;
+
+filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);zoom:1
+
 }
 
 

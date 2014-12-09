@@ -18,17 +18,16 @@ require([
     //抽奖配置参数
     var obj = {
         endPoint: 3, //终结点，就所中的奖品号
-        number: 2 //抽奖次数
+        number: 0 //抽奖次数
     };
 
     //初始化数据
-    var lottery = lottery(obj);
-    lottery.dom(data);
+    lottery(obj).dom(data);
 
     //点击抽奖按钮
     $("#btnrun").on("click", function(){
         if(obj.number > 0){
-            lottery.start(); //动画开始
+            lottery(obj).start(); //动画开始
             obj.number--
         }else{
             dialog.alert({
