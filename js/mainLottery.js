@@ -18,9 +18,7 @@ require([
     //抽奖配置参数
     var obj = {
         endPoint: 3, //终结点，就所中的奖品号
-        number: 1 //抽奖次数
-//        ,data: data
-//        url: "./par.php"
+        number: 2 //抽奖次数
     };
 
     //初始化数据
@@ -34,7 +32,8 @@ require([
             obj.number--
         }else{
             dialog.alert({
-                number: obj.number,
+//                number: obj.number,
+                number: 1,
                 prizeText: "您的抽奖次数已经用完!"
             });
         }

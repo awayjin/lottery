@@ -51,7 +51,6 @@ define([
 
             //数据和抽奖规则初始化
 //            this.dom(this.data);
-
 //            this.start();
         },
 
@@ -64,7 +63,7 @@ define([
                 img = "";
 
             for(var i=0; i<prize.length; i++){
-                img = "<img src='"+prize[i]["src"]+"' alt='"+prize[i]["data-text"]+"'> ";
+                img = "<img src='"+prize[i]["src"]+"' alt='"+prize[i]["alt"]+"'> ";
                 $(prizeBox).eq(i).append(img);
             }
 
@@ -92,11 +91,8 @@ define([
                 imgMask = that.imgMask,
                 active = that.active,
                 start = that.startBtn,
-                verify = that.verify,
 
-                number = parseInt(that.number),
                 url = that.url,
-
                 timeId, //用它存放setinterval,不用扣得太细，因为只要用到setinterval最后就得用     window.clearInterval(t);去释放他
                 index = 1,//这个用来记录当前循环的次数，比如点了抽奖要转四圈，每转一圈有10个奖品，那一共就要循环10*圈数
                 circles = 1,//抽奖要转的圈数
@@ -112,7 +108,6 @@ define([
                 /////终结点，生成1-10之内的随机数,因为你一圈有10个奖品
                 endPoint = this.endPoint;
 
-
                 ////当前的圈数
                 currentCircle = 1;
                 ////速度，谁的太高了会很慢
@@ -124,12 +119,12 @@ define([
                 ////存放奖品的<td>的数组
                 var drawturn = [];
 
-
                 ////开始循环
-                timeId= setInterval(autoScroll,speed);
+                autoScroll();
+                //timeId= setInterval(autoScroll,speed);
             }
 
-///循环奖品方法
+            ///循环奖品方法
             function autoScroll() {
                 if (index > 1) {
                     if ((index % 10) == 1) {
@@ -171,8 +166,8 @@ define([
                             }
                         });
                     }else{
-                        window.clearInterval(timeId);
-                        dialog.alert("恭喜抽中了" + that.endPoint + "号奖品");
+                        var prize = $(imgMask).eq(that.endPoint).find("img").attr("alt")
+                        dialog.alert("恭喜抽中了" + prize + "号奖品");
                     }
                     return;
 
@@ -182,10 +177,6 @@ define([
 
 
              startup();
-
-        },
-
-        hi: function(){
 
         }
 

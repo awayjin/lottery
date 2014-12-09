@@ -16,17 +16,17 @@ define(function(){
 
     //奖品
     obj.prize = [
-        { "src": "images/lottery_01.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_02.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_03.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_04.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_05.jpg", "alt": "全棉时代全棉柔斤一盒"},
+        { "src": "images/lottery_01.jpg", "alt": "全棉时1代全棉柔斤一盒"},
+        { "src": "images/lottery_02.jpg", "alt": "全棉时2柔斤一盒"},
+        { "src": "images/lottery_03.jpg", "alt": "全棉时3柔斤一盒"},
+        { "src": "images/lottery_04.jpg", "alt": "全棉时4棉柔斤一盒"},
+        { "src": "images/lottery_05.jpg", "alt": "全棉时5代全棉柔斤一盒"},
 
-        { "src": "images/lottery_06.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_07.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_08.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_09.jpg", "alt": "全棉时代全棉柔斤一盒"},
-        { "src": "images/lottery_10.jpg", "alt": "全棉时代全棉柔斤一盒"}
+        { "src": "images/lottery_06.jpg", "alt": "全棉时6代全棉柔斤一盒"},
+        { "src": "images/lottery_07.jpg", "alt": "全棉时7代全棉柔斤一盒"},
+        { "src": "images/lottery_08.jpg", "alt": "全棉时8代全棉柔斤一盒"},
+        { "src": "images/lottery_09.jpg", "alt": "全棉时9代全棉柔斤一盒"},
+        { "src": "images/lottery_10.jpg", "alt": "全棉时10代全棉柔斤一盒"}
     ];
 
 
