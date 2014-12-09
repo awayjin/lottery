@@ -112,7 +112,7 @@ module.exports = function(grunt){
 //                    ,{expand: true, cwd:"./", src: ['external/**'], dest: 'dist/'} //复制外部文件 到测试版目录
                     ,{expand: true, cwd:"./", src: ['js/**'], dest: 'dist/'} //复制 js 到测试版目录
                     ,{expand: true, cwd:"./", src: ['css/**'], dest: 'dist/css'} //复制 css 到测试版目录
-                    ,{expand: true, cwd:"./", src: ['images/**'], dest: 'dist/images'} //复制 images 到测试版目录
+                    ,{expand: true, cwd:"./", src: ['images/**'], dest: 'dist/'} //复制 images 到测试版目录
                 ]
             }
         },
@@ -204,7 +204,7 @@ module.exports = function(grunt){
                     username: "root"
                 },
                 src: 'build',
-                dest: '/home/ftp/demo',
+                dest: '/home/wwwroot/default/lottery',
                 exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'path/to/dist/tmp']
             }
         },
@@ -212,16 +212,16 @@ module.exports = function(grunt){
         'sftp-deploy': {
             build: {
                 auth: {
-                    host: 'http://114.215.175.30/',
+                    host: '114.215.175.30',
                     port: 22,
                     authKey: 'key2'
                 },
                 cache: 'sftpCache.json',
-                src: './build',
+                src: 'build/',
                 dest: '/home/wwwroot/default/lottery',
                 exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'path/to/dist/tmp'],
                 serverSep: '/',
-                concurrency: 4,
+                concurrency: 14,
                 progress: true
             }
         },
