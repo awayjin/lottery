@@ -76,7 +76,7 @@ define([
             hCenter,
             vTop;
 
-        $("body").append("<div class='d-mask'></div>");
+        $("body").append("<div class='d-mask' id='opacity2'></div>");
 
         //居中，滚动条的20个像素
         bodyWidth = $(document).width();

@@ -1,9 +1,9 @@
 define([
 //    "./lib/jquery"
-    "jquery",
-//    "data",
-    "dialog"
-], function($,  dialog){
+    "jquery"
+//    ,"data"
+//    ,"dialog"
+], function($){
 //    var $$ = window.Roulette = function(obj){
 
 
@@ -44,11 +44,24 @@ define([
             this.url = params.url;
             this.verify = params.verify;
 
+            this.success = params.success; //抽奖完成回调函数
+            this.clickStart = params.clickStart; //点击开始回调函数
+            this.continue = params.continue; //继续抽奖回调函数
+
 
             //数据和抽奖规则初始化
 //            this.dom(this.data);
-//            this.start();
-            return this;
+
+            var that = this;
+            $(this.startBtn).click(function(){
+                that.clickStart(that);
+            });
+
+            //继续抽奖
+            $(document).on("click", ".dialog-ok", function(){
+                that.continue(that)
+            });
+
         },
 
         //DOM初始化
@@ -88,6 +101,7 @@ define([
                 imgMask = this.imgMask,
                 active = this.active,
                 start = this.startBtn,
+                cyycleSuccess = this.success,
 
                 url = this.url,
                 timeId, //用它存放setinterval,不用扣得太细，因为只要用到setinterval最后就得用     window.clearInterval(t);去释放他
@@ -146,12 +160,14 @@ define([
                             url: url,
                             data: endPoint,
                             success: function(d){
-                                dialog.alert(d);
+                                cyycleSuccess(that);
                             }
                         });
                     }else{
-                        var prize = $(imgMask).eq(that.endPoint).find("img").attr("alt")
-                        dialog.alert("恭喜抽中了" + prize + "号奖品");
+                        var prize = $(imgMask).eq(that.endPoint).find("img").attr("alt");
+                        //dialog.alert("恭喜抽中了" + prize + "号奖品");
+                        cyycleSuccess(that);
+
                     }
                     return;
 
@@ -161,14 +177,7 @@ define([
 
 
             return this;
-        },
-
-        rollCycle: function(){
-//遮罩层相关
-
-            return this;
         }
-
     };
 
     Roulette.fn.init.prototype = Roulette.fn;
