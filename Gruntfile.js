@@ -241,10 +241,7 @@ module.exports = function(grunt){
         }
     });
 
-    grunt.event.on("watch", function(action, filepath, target){
-        grunt.log.writeln(target+ ":" + " 文件:"+ filepath+ " 变动状态:"+action);
-    });
-
+ 
     grunt.registerTask("dev", ["clean:build", "copy:main"]);
 
     //执行 grunt bundle --最终输出的文件 < name-生成日期.zip > 文件
