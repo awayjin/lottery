@@ -112,7 +112,7 @@ define([
                 index = 1,//这个用来记录当前循环的次数，比如点了抽奖要转四圈，每转一圈有10个奖品，那一共就要循环10*圈数
                 circles = Math.round(Math.random() * 10 + 5),//抽奖要转的圈数
                 currentCircle = 1, //记录当前是第几圈setInterval的第二个参数，通过操纵他来实现变速
-                speed = 800,//转动的速度,用它作为
+                speed = 200,//转动的速度,用它作为
                 endPoint = that.endPoint; //最后停止的位置，即选中了谁
 
 
@@ -165,9 +165,11 @@ define([
                     currentCircle++;
                 }
                 index++;
+//                if (currentCircle == 1) {
                 if (currentCircle == 1) {
                     window.clearInterval(timeId);
-                    speed -= 80;
+//                    speed -= 80;
+                    speed = 80;
                     timeId = setInterval(autoScroll, speed);
                 }else if (currentCircle == (circles-1) ) {// circles-1倒数二圈的时候开始减速
                     window.clearInterval(timeId);
