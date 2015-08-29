@@ -1,7 +1,7 @@
 <h1>
 js跑马灯 轮播抽奖效果
 </h1>
-<a href="http://www.codegoing.com/lottery/" target="_blank">查看效果地址</a>
+<a href="http://www.codegoing.com/static/lottery/" target="_blank">查看效果地址</a>
 
 <p>用到的库 require.js jquery.js,可配置，可控制终将的是哪个。数据(抽奖图片),逻辑(js),视图(html)分离.</p>
 <p>模块化</p>
