@@ -117,7 +117,7 @@ module.exports = function(grunt){
             }
         },
 
-        //压缩最终Build文件夹
+        // 压缩最终Build文件夹
         compress: {
             main: {
                 options: {
@@ -238,7 +238,15 @@ module.exports = function(grunt){
                 exclusions: ['path/to/source/folder/**/.DS_Store', 'path/to/source/folder/**/Thumbs.db', 'dist/tmp'],
                 keep: ['/important/images/at/server/*.jpg']
             }
+        },
+
+        "build":{
+            all: {
+                dest: "dist/test.js"
+            }
         }
+
+
     });
 
  

@@ -3,26 +3,28 @@ define([
     "jquery"
 //    ,"data"
 //    ,"dialog"
-], function($){
+], function ($) {
 //    var $$ = window.Roulette = function(obj){
 
 
-    var Roulette = function(obj){
+    var Roulette = function (obj) {
         return new Roulette.prototype.init(obj);
     };
 
     Roulette.fn = Roulette.prototype = {
-        init: function(obj){
+        init: function (obj) {
 
             //设置默认参数
             var params = {
-                number: 1, //抽奖次数,默认1次
+                //  number: 3, //抽奖次数,默认1次
                 endPoint: Math.round(Math.random() * 10), //所中奖品
                 ruleObj: ".rule-txt", //抽奖规则包裹元素，添加天这个元素里面
 //                ruleData: data.ruleData //抽奖规则
                 wrap: ".lottery-draw",
                 lotteryBg: "#e4015f", //轮盘默认背景颜色 #e4015f
-                verify: false //后台验证。默认关闭
+                verify: false, //后台验证。默认关闭
+                continueFunc: function () {
+                }
             };
 
             //合并参数
@@ -46,7 +48,7 @@ define([
 
             this.success = params.success; //抽奖完成回调函数
             this.clickStart = params.clickStart; //点击开始回调函数
-            this.continue = params.continue; //继续抽奖回调函数
+            this.continueFunc = params.continueFunc; //继续抽奖回调函数
 
 
             //数据和抽奖规则初始化
@@ -54,27 +56,27 @@ define([
 
             var that = this;
             //开始
-            $(this.startBtn).click(function(){
+            $(this.startBtn).click(function () {
                 that.clickStart(that);
             });
 
             //继续抽奖
-            $(document).on("click", ".dialog-ok", function(){
-                that.continue(that)
+            $(document).on("click", ".dialog-ok", function () {
+                that.continueFunc(that)
             });
 
         },
 
         //DOM初始化
-        dom: function(data){
+        dom: function (data) {
 
             var rule = data.ruleData,//规则
                 prize = data.prize, //奖品
                 prizeBox = this.imgMask,
                 img = "";
 
-            for(var i=0; i<prize.length; i++){
-                img = "<img src='"+prize[i]["src"]+"' alt='"+prize[i]["alt"]+"'> ";
+            for (var i = 0; i < prize.length; i++) {
+                img = "<img src='" + prize[i]["src"] + "' alt='" + prize[i]["alt"] + "'> ";
                 $(prizeBox).eq(i).append(img);
             }
 
@@ -87,7 +89,7 @@ define([
             $(this.ruleObj).empty().append(rule);
 
             //开始按钮 换背景图片
-            $(this.startBtn).css({"background-image": "url("+data.startBg+")"});
+            $(this.startBtn).css({"background-image": "url(" + data.startBg + ")"});
 
             //数据加载完成后显示抽奖
             $(this.wrap).show();
@@ -95,11 +97,11 @@ define([
             return this;
         },
 
-        posIndex: function(){
+        posIndex: function () {
 
         },
 
-        start: function(){
+        start: function () {
 
             var that = this,
                 mask = this.mask,
@@ -123,41 +125,42 @@ define([
             autoScroll();
 
             //查找活动层的位置
-            function indexActive(){
+            function indexActive() {
                 var iIndex = 0;
-                $(imgMask).each(function(){
-                    if($(this).find(active).length > 0){
+                $(imgMask).each(function () {
+                    if ($(this).find(active).length > 0) {
                         iIndex = $(this).index();
                     }
                 });
                 return iIndex
             }
+
             //循环奖品方法
             function autoScroll() {
                 if (index > 1) {
                     if ((index % 10) == 1) {
                         $(imgMask).eq(9).find(active).remove();
                     } else {
-                        var bb = index - (10*(currentCircle -1)) -1;
-                        $(imgMask).eq(bb-1).find(active).remove();
+                        var bb = index - (10 * (currentCircle - 1)) - 1;
+                        $(imgMask).eq(bb - 1).find(active).remove();
                     }
                 }
 
                 //继续抽奖从上次的终结点开始
-                if($(active).length > 0){
+                if ($(active).length > 0) {
                     var iIndex = indexActive();
-                    if(iIndex != 0){
+                    if (iIndex != 0) {
                         $(active).remove();
-                        if(iIndex == 9){
+                        if (iIndex == 9) {
                             $(imgMask).eq(0).append(mask);
-                        }else{
+                        } else {
                             //iIndex+1要在这里，不然最终终结点会不对的
-                            $(imgMask).eq(iIndex+1).append(mask);
+                            $(imgMask).eq(iIndex + 1).append(mask);
                         }
                     }
-                }else{
-                    var aa = index - (10*(currentCircle-1));
-                    $(imgMask).eq(aa-1).append(mask);
+                } else {
+                    var aa = index - (10 * (currentCircle - 1));
+                    $(imgMask).eq(aa - 1).append(mask);
                 }
 
 
@@ -171,7 +174,7 @@ define([
 //                    speed -= 80;
                     speed = 80;
                     timeId = setInterval(autoScroll, speed);
-                }else if (currentCircle == (circles-1) ) {// circles-1倒数二圈的时候开始减速
+                } else if (currentCircle == (circles - 1)) {// circles-1倒数二圈的时候开始减速
                     window.clearInterval(timeId);
                     speed += 60;
                     timeId = setInterval(autoScroll, speed);
